@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Valentine’s Day 💛</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Libre Baskerville', serif;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #fff7d6, #d9f2d9, #b6e3c6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2f4f2f;
+}
+
+/* ENTRY */
+#enter {
+  position: fixed;
+  inset: 0;
+  background: #fdf6e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+#enter button {
+  padding: 18px 46px;
+  font-size: 1.2rem;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  background: #6fbf73;
+  color: white;
+  box-shadow: 0 0 40px rgba(111,191,115,0.6);
+}
+
+/* MAIN */
+.container {
+  display: none;
+  text-align: center;
+  padding: 60px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(14px);
+  border-radius: 35px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.2);
+  max-width: 750px;
+}
+
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 1.3rem;
+  line-height: 2;
+}
+
+/* LIGHT PARTICLES */
+.light {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  animation: float 12s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 0; }
+  to { transform: translateY(-10vh); opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="enter">
+  <button onclick="startFinal()">One last thing 💛</button>
+</div>
+
+<audio id="finalMusic" loop>
+  <source src="final-music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="main">
+  <h1>A very Happy Valentine’s Day to my man 🌼</h1>
+  <p>
+      Thank you for being my Valentine,<br>
+    today — and hopefully every day 💛
+  </p>
+</div>
+
+<script>
+/* LIGHT PARTICLES */
+for(let i=0;i<80;i++){
+  let l=document.createElement("div");
+  l.className="light";
+  l.style.left=Math.random()*100+"vw";
+  l.style.animationDuration=6+Math.random()*8+"s";
+  document.body.appendChild(l);
+}
+
+/* START */
+function startFinal(){
+  document.getElementById("enter").style.display="none";
+  document.getElementById("main").style.display="block";
+  document.getElementById("finalMusic").play();
+}
+</script>
+
+</body>
+</html>
