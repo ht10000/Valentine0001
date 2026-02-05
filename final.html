@@ -12,7 +12,7 @@ body {
   height: 100vh;
   font-family: 'Libre Baskerville', serif;
   overflow: hidden;
-  background: radial-gradient(circle at top, #fff7d6, #d9f2d9, #b6e3c6);
+  background: radial-gradient(circle at top, #fff8dc, #d9f2d9, #b8e6c1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,44 +31,86 @@ body {
 }
 
 #enter button {
-  padding: 18px 46px;
-  font-size: 1.2rem;
-  border-radius: 40px;
+  padding: 18px 48px;
+  font-size: 1.25rem;
+  border-radius: 45px;
   border: none;
   cursor: pointer;
   background: #6fbf73;
   color: white;
-  box-shadow: 0 0 40px rgba(111,191,115,0.6);
+  box-shadow: 0 0 45px rgba(111,191,115,0.65);
 }
 
-/* MAIN */
+/* MAIN CARD */
 .container {
   display: none;
   text-align: center;
-  padding: 60px;
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(14px);
-  border-radius: 35px;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.2);
-  max-width: 750px;
+  padding: 65px;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(16px);
+  border-radius: 40px;
+  box-shadow: 0 35px 80px rgba(0,0,0,0.25);
+  max-width: 780px;
+  z-index: 2;
 }
 
 h1 {
-  font-size: 2.8rem;
-  margin-bottom: 15px;
+  font-size: 2.9rem;
+  margin-bottom: 18px;
 }
 
 p {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   line-height: 2;
 }
 
-/* LIGHT PARTICLES */
+/* TEXT INPUT */
+textarea {
+  width: 100%;
+  margin-top: 25px;
+  padding: 16px;
+  font-size: 1.1rem;
+  border-radius: 18px;
+  border: none;
+  resize: none;
+  outline: none;
+  font-family: 'Libre Baskerville', serif;
+}
+
+/* FOREVER BUTTON */
+#foreverBtn {
+  margin-top: 30px;
+  padding: 16px 50px;
+  font-size: 1.2rem;
+  border-radius: 45px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ffd966, #ffb703);
+  color: #4a3b00;
+  box-shadow: 0 0 50px rgba(255,200,80,0.8);
+  animation: glow 2.5s infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 25px rgba(255,200,80,0.5); }
+  50% { box-shadow: 0 0 60px rgba(255,200,80,0.9); }
+  100% { box-shadow: 0 0 25px rgba(255,200,80,0.5); }
+}
+
+#finalMessage {
+  display: none;
+  margin-top: 35px;
+  font-size: 1.4rem;
+  color: #2e5e3e;
+  white-space: pre-wrap;
+}
+
+/* FLOATING LIGHT */
 .light {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.95);
   border-radius: 50%;
   animation: float 12s linear infinite;
 }
@@ -82,6 +124,7 @@ p {
 
 <body>
 
+<!-- ENTRY -->
 <div id="enter">
   <button onclick="startFinal()">One last thing 💛</button>
 </div>
@@ -92,15 +135,25 @@ p {
 
 <div class="container" id="main">
   <h1>A very Happy Valentine’s Day to my man 🌼</h1>
+
   <p>
-      Thank you for being my Valentine,<br>
-    today — and hopefully every day 💛
+   Moments with you feel like warm. chosen. relaxing <br>
+    Thank you for being my valentine today and hopefully every single day 💛
   </p>
+
+  <!-- TEXT AREA -->
+  <textarea id="wish" rows="4" placeholder="I like u sooo damn much, handsome...so much that words can't define it"></textarea>
+
+  <!-- FOREVER BUTTON (ALWAYS PRESENT) -->
+  <button id="foreverBtn" onclick="forever()">Forever ♾️</button>
+
+  <!-- FINAL MESSAGE -->
+  <div id="finalMessage"></div>
 </div>
 
 <script>
-/* LIGHT PARTICLES */
-for(let i=0;i<80;i++){
+/* FLOATING LIGHT */
+for(let i=0;i<90;i++){
   let l=document.createElement("div");
   l.className="light";
   l.style.left=Math.random()*100+"vw";
@@ -108,11 +161,24 @@ for(let i=0;i<80;i++){
   document.body.appendChild(l);
 }
 
-/* START */
+/* START PAGE */
 function startFinal(){
   document.getElementById("enter").style.display="none";
   document.getElementById("main").style.display="block";
   document.getElementById("finalMusic").play();
+}
+
+/* FOREVER CLICK */
+function forever(){
+  const input = document.getElementById("wish");
+  const text = input.value.trim() || "Thank you for being my Valentine 💛";
+
+  input.style.display = "none";
+  document.getElementById("foreverBtn").style.display = "none";
+
+  const msg = document.getElementById("finalMessage");
+  msg.innerText = text + "\n\n— Forever ♾️";
+  msg.style.display = "block";
 }
 </script>
 
